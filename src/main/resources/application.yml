@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/News?characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    #    change the password to your own mysql password
+    password: 123456789
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080
