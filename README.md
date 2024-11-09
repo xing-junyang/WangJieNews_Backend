@@ -5,9 +5,9 @@
 直接运行目录下编译过的 `jar` 包，需要将适应系统版本的 `chromedriver` 放在相同目录下：
 
 ```shell
-
 java -jar ./HarmonyOS_Homework_Backend-0.0.1-SNAPSHOT.jar
-
 ```
+
+`jar` 包的下载地址：https://box.nju.edu.cn/f/cf800e7c9ba34fc1a2e0/?dl=1
 
 也可以通过 Maven 下载依赖并启动 Spring Boot. 需要将 `./chromedriver` 更换为适应系统版本的版本。
