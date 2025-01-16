@@ -12,7 +12,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public UserVO register(@RequestBody UserVO userVO) {
+    public Boolean register(@RequestBody UserVO userVO) {
         return userService.register(userVO);
+    }
+
+    @PostMapping("/login")
+    public Boolean login(@RequestBody UserVO userVO) {
+        return userService.login(userVO);
     }
 }
