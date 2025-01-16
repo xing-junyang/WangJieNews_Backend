@@ -1,7 +1,7 @@
 package com.nju.swi.harmonyos_homework_backend.service;
 
-import org.springframework.stereotype.Service;
+import com.nju.swi.harmonyos_homework_backend.vo.UserVO;
 
-@Service
-public class UserService {
+public interface UserService {
+    public UserVO register(UserVO user);
 }
