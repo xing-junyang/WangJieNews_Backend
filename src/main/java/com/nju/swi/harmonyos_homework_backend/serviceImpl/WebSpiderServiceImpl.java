@@ -47,7 +47,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
 
     private List<News> fetchNewsFromWeb(String url, String type) {
         List<News> newsList = new ArrayList<>();
-        String driverPath = System.getProperty("user.dir") + "/chromedriver";
+        String driverPath = System.getProperty("user.dir") + "/chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverPath);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");  // 开启无头模式
