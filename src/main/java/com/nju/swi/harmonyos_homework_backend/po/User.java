@@ -10,6 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "user", indexes = {
+        @Index(name = "idx_user_id", columnList = "id"),
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
