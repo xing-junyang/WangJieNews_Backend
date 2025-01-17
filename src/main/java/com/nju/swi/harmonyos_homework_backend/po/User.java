@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,10 +29,15 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Basic
+    @Column(name = "star_news")
+    private List<Integer> starNews;
+
     public UserVO toVO(){
         UserVO vo = new UserVO();
         vo.setAccount(account);
         vo.setPassword(password);
+        vo.setStarNews(starNews);
         return vo;
     }
 }

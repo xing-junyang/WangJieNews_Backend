@@ -31,12 +31,12 @@ public class NewsController {
     }
 
     @GetMapping("/star_news")
-    public Boolean starNews(@RequestParam int id){
-        return newsService.starNews(id);
+    public Boolean starNews(@RequestParam int userid, @RequestParam int id){
+        return newsService.starNews(userid, id);
     }
 
     @GetMapping("/get_star_news")
-    public List<NewsVO> getStarNews(){
-        return newsService.getStarNews();
+    public List<NewsVO> getStarNews(@RequestParam int userid){
+        return newsService.getStarNews(userid);
     }
 }

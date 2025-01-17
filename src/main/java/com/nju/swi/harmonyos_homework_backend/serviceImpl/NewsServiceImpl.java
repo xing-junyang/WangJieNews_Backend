@@ -1,7 +1,9 @@
 package com.nju.swi.harmonyos_homework_backend.serviceImpl;
 
 import com.nju.swi.harmonyos_homework_backend.po.News;
+import com.nju.swi.harmonyos_homework_backend.po.User;
 import com.nju.swi.harmonyos_homework_backend.repository.NewsRepository;
+import com.nju.swi.harmonyos_homework_backend.repository.UserRepository;
 import com.nju.swi.harmonyos_homework_backend.service.NewsService;
 import com.nju.swi.harmonyos_homework_backend.service.WebSpiderService;
 import com.nju.swi.harmonyos_homework_backend.vo.NewsVO;
@@ -15,6 +17,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class NewsServiceImpl implements NewsService {
+    @Autowired
+    UserRepository userRepository;
+
     @Autowired
     NewsRepository newsRepository;
 
@@ -38,20 +43,34 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Boolean starNews(int id) {
+    public Boolean starNews(int userid, int id) {
         News news = newsRepository.findById(id).orElse(null);
-        if(news == null){
+        User user = userRepository.findById(userid).orElse(null);
+        if(news == null || user == null){
             return false;
         }
-        news.setStar(!news.getStar());
-        newsRepository.save(news);
+        List<Integer> starNews = user.getStarNews();
+        if(starNews.contains(id)) {
+            starNews.remove(Integer.valueOf(id));
+        } else {
+            starNews.add(id);
+        }
+        user.setStarNews(starNews);
+        userRepository.save(user);
         return true;
     }
 
     @Override
-    public List<NewsVO> getStarNews() {
-        return newsRepository.findAll().stream()
-                .filter(News::getStar)
+    public List<NewsVO> getStarNews(int userid) {
+        User user = userRepository.findById(userid).orElse(null);
+        if(user == null){
+            return null;
+        }
+        List<Integer> starNews = user.getStarNews();
+        return starNews.stream()
+                .map(newsRepository::findById)
+                .filter(java.util.Optional::isPresent)
+                .map(java.util.Optional::get)
                 .map(News::toVO)
                 .collect(Collectors.toList());
     }

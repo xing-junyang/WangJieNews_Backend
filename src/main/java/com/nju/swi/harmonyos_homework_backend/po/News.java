@@ -43,16 +43,11 @@ public class News {
     @Column(name = "url")
     private String url;
 
-    @Basic
-    @Column(name = "star")
-    private Boolean star;
-
     public News(String title, String content, String author, String date) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.date = date;
-        this.star = false;
     }
 
     public NewsVO toVO() {
@@ -64,7 +59,6 @@ public class News {
         newsVO.setDate(date);
         newsVO.setType(type);
         newsVO.setUrl(url);
-        newsVO.setStar(star);
         return newsVO;
     }
 }
