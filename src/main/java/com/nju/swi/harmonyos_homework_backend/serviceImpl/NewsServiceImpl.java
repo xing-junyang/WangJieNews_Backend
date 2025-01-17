@@ -36,4 +36,23 @@ public class NewsServiceImpl implements NewsService {
                 .limit(10)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Boolean starNews(int id) {
+        News news = newsRepository.findById(id).orElse(null);
+        if(news == null){
+            return false;
+        }
+        news.setStar(!news.getStar());
+        newsRepository.save(news);
+        return true;
+    }
+
+    @Override
+    public List<NewsVO> getStarNews() {
+        return newsRepository.findAll().stream()
+                .filter(News::getStar)
+                .map(News::toVO)
+                .collect(Collectors.toList());
+    }
 }

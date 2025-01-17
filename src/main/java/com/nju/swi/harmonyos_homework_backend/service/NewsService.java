@@ -8,4 +8,8 @@ public interface NewsService {
     public List<NewsVO> getNews();
 
     public List<NewsVO> getNewsByType(String type);
+
+    public Boolean starNews(int id);
+
+    public List<NewsVO> getStarNews();
 }

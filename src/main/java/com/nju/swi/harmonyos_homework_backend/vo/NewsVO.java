@@ -14,6 +14,7 @@ public class NewsVO {
     private String Author;
     private String Type;
     private String Url;
+    private Boolean star;
 
     public News toPO(){
         News news = new News();
@@ -24,6 +25,7 @@ public class NewsVO {
         news.setAuthor(Author);
         news.setType(Type);
         news.setUrl(Url);
+        news.setStar(star);
         return news;
     }
 }

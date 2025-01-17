@@ -29,4 +29,14 @@ public class NewsController {
     public List<NewsVO> getNewsByType(@RequestParam String type){
         return newsService.getNewsByType(type);
     }
+
+    @GetMapping("/star_news")
+    public Boolean starNews(@RequestParam int id){
+        return newsService.starNews(id);
+    }
+
+    @GetMapping("/get_star_news")
+    public List<NewsVO> getStarNews(){
+        return newsService.getStarNews();
+    }
 }
